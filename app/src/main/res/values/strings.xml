@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">FirstTest</string>
+    <string name="app_name">Pogresnost</string>
     <string name="Postoyan">Постоянная</string>
     <string name="Raschitat">Расчитать</string>
-    <string name="Impuls">импульсы</string>
+    <string name="Impuls">Импульсы</string>
     <string name ="btn_stop_label">STOP</string>
     <string name ="btn_start_label">START</string>
     <string name ="btn_pause_label">PAUSE</string>
