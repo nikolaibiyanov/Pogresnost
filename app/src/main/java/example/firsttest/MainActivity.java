@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Handler customHandler = new Handler();
     String  pTime;
 
-    TextView tv5;
     EditText Ampers,Impuls,Postoyannay,Volts,Time,et_V1, et_V2,et_V3;
     Button SummaTok,SredVolts;
 
@@ -58,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Button ButtonRaschitat = findViewById(R.id.buttonRaschitat);
         Button startButton = findViewById(R.id.btn_start);
         SummaTok = findViewById(R.id.buttonSumTok);
@@ -67,12 +67,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SummaTok.setOnClickListener(this);
         SredVolts.setOnClickListener(this);
 
-        timerTextView = findViewById(R.id.timerTextView);
         Ampers = findViewById(R.id.editTextAmpers);
         et_V1 = findViewById(R.id.editText1);
         et_V2 = findViewById(R.id.editText2);
         et_V3 = findViewById(R.id.editText3);
-
         Impuls = findViewById(R.id.editTextImpuls);
         Postoyannay = findViewById(R.id.editTextPostoyannay);
         Volts = findViewById(R.id.editTextVolts);
@@ -81,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Mosnost = findViewById(R.id.textViewMosnost);
         Itog = findViewById(R.id.textViewItog);
         pogresnost = findViewById(R.id.textViewPogresnost);
-        tv5 = findViewById(R.id.textView5);
+        timerTextView = findViewById(R.id.timerTextView);
 
         Button b =  findViewById(R.id.btn_start);
         b.setText("start");
@@ -121,7 +119,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String s = Float.toString(pogresn);
                     pogresnost.setText(s);
 
-
                     //общая мощность
                     float A = Float.parseFloat(Ampers.getText().toString());
                     float V = Float.parseFloat(Volts.getText().toString());
@@ -131,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //погрешность
                     float pog = (pogresn - summosnost) / summosnost * 100;
                     String formatdobl = String.format("%.2f", pog);
-                    Itog.setText(formatdobl);
+                    Itog.setText(formatdobl+ " %");
                     break;
 
                 } catch (ArithmeticException es) {
@@ -141,8 +138,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             case R.id.buttonSumTok:
                 try {
-                    if (et_V1.getText().equals("") || et_V2.getText().equals("") || et_V3.getText().equals("")) {
-                        Toast.makeText(this, "Не должно быть пустого поля", Toast.LENGTH_LONG).show();
+                    if (et_V1.getEditableText().toString().length() == 0) {
+                        Toast.makeText(getApplicationContext(), "Введите значение напряжения или тока в поле 1",
+                                Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (et_V2.getEditableText().toString().length() == 0) {
+                        Toast.makeText(getApplicationContext(), "Введите значение напряжения или тока в поле 2",
+                                Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (et_V3.getEditableText().toString().length() == 0) {
+                        Toast.makeText(getApplicationContext(), "Введите значение напряжения или тока в поле 3",
+                                Toast.LENGTH_LONG).show();
+                        return;
                     }
                     float a1 = Float.parseFloat(et_V1.getText().toString());
                     float a2 = Float.parseFloat(et_V2.getText().toString());
@@ -155,8 +164,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.buttonSredVolts:
                 try {
-                    if (et_V1.getText().equals("") || et_V2.getText().equals("") || et_V3.getText().equals("")) {
-                        Toast.makeText(this, "Не должно быть пустого поля", Toast.LENGTH_LONG).show();
+
+
+                    if (et_V1.getEditableText().toString().length() == 0) {
+                        Toast.makeText(getApplicationContext(), "Введите значение напряжения или тока в поле 1",
+                                Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (et_V2.getEditableText().toString().length() == 0) {
+                        Toast.makeText(getApplicationContext(), "Введите значение напряжения или тока в поле 2",
+                                Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (et_V3.getEditableText().toString().length() == 0) {
+                        Toast.makeText(getApplicationContext(), "Введите значение напряжения или тока в поле 3",
+                                Toast.LENGTH_LONG).show();
+                        return;
                     }
                     float v1 = Float.parseFloat(et_V1.getText().toString());
                     float v2 = Float.parseFloat(et_V2.getText().toString());
